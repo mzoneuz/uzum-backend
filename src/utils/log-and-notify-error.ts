@@ -1,28 +1,30 @@
-// import dedent from "dedent";
-// import { delay } from "utilzify";
+import dedent from "dedent";
+import { delay } from "utilzify";
 
 // import { checkRuntime } from ".";
-// import { logger } from "../services";
-// import { fbsBot as bot } from "../bot/core";
-// import { developerChadIds } from "../helpers/constants";
+import { fbsAssistantBot, logger } from "@/services";
+import config from "@/config";
+import { Bot } from "grammy";
 
-// const logAndNotifyError = async (errorMessage: string, resource: string = ""): Promise<void> => {
-//   logger.error(errorMessage);
+const logAndNotifyError = async (errorMessage: string, resource: string = "", botInstance?: Bot): Promise<void> => {
+  logger.error(errorMessage);
 
-//   const runtime = checkRuntime();
-//   const telegramMessage = dedent`
-//         ${resource ? `<b>Resurs:</b> ${resource}` : ""}
-//         <b>ENV: [${runtime.type}]</b>
-//         <b>Xatolik yuz berdi</b>: ${errorMessage}`;
+  const bot = botInstance || fbsAssistantBot;
 
-//   if (runtime.isLocal) {
-//     await bot.api.sendMessage(config.myChatId, telegramMessage, { parse_mode: "HTML" });
-//   } else {
-//     for (const chatId of developerChadIds) {
-//       await delay(500);
-//       await bot.api.sendMessage(chatId, telegramMessage, { parse_mode: "HTML" });
-//     }
-//   }
-// };
+  const runtime = { isLocal: true, type: "development" }; // checkRuntime();
+  const telegramMessage = dedent`
+        ${resource ? `<b>Resurs:</b> ${resource}` : ""}
+        <b>ENV: [${runtime.type}]</b>
+        <b>Xatolik yuz berdi</b>: ${errorMessage}`;
 
-// export default logAndNotifyError;
+  if (runtime.isLocal) {
+    await bot.api.sendMessage(config.chats.developer, telegramMessage, { parse_mode: "HTML" });
+  } else {
+    for (const chatId of config.chats.developers) {
+      await delay(500);
+      await bot.api.sendMessage(chatId, telegramMessage, { parse_mode: "HTML" });
+    }
+  }
+};
+
+export default logAndNotifyError;

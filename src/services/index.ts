@@ -5,3 +5,4 @@ export { default as ApiError } from "./api-error";
 export { default as spreadsheet } from "./spreadsheet";
 
 export * from "./https";
+export * from "./bots";
