@@ -1,0 +1,69 @@
+{
+  "name": "uzum-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon",
+    "clean": "rm -rf dist",
+    "lint:fix": "eslint . --fix",
+    "build": "yarn clean && tsc",
+    "typecheck": "tsc --noEmit true",
+    "stop": "pm2 stop ecosystem.config.js",
+    "start": "pm2 start ecosystem.config.js",
+    "lint": "eslint . --quiet --max-warnings 0",
+    "restart": "pm2 restart ecosystem.config.js",
+    "format": "prettier --write \"**/*.{json,js,ts,md,html}\""
+  },
+  "author": {
+    "name": "Suhrobbek Soatov",
+    "url": "https://soatov.uz",
+    "email": "svkhrobbeck@gmail.com"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "dedent": "^1.5.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "form-data": "^4.0.2",
+    "grammy": "^1.35.1",
+    "helmet": "^8.1.0",
+    "http-status-codes": "^2.3.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.48",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "nodemon": "^3.1.9",
+    "telegraf": "^4.16.3",
+    "ts-morph": "^27.0.0",
+    "utilzify": "^1.5.6",
+    "winston": "^3.17.0",
+    "xlsx": "^0.18.5",
+    "zutsheet": "^2.4.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.3",
+    "@types/helmet": "^4.0.0",
+    "@types/lodash": "^4.17.16",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.14.0",
+    "@types/node-cron": "^3.0.11",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1",
+    "node": ">=18.0.0"
+  }
+}
