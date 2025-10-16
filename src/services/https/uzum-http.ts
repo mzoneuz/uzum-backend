@@ -5,15 +5,15 @@ import config from "@/config";
 import { logger } from "@/services";
 import { fetchAdaptrer, msgLogger } from "@/utils";
 
-const uzumHttp = axios.create({ baseURL: config.api.uzumBaseUrl, adapter: fetchAdaptrer });
-
-uzumHttp.interceptors.request.use(
-  config => {
-    generateAndAssignRandomHeaders(config);
-    return config;
+const uzumHttp = axios.create({
+  baseURL: config.api.uzumBaseUrl,
+  adapter: fetchAdaptrer,
+  headers: {
+    "Accept-Language": "ru-RU",
   },
-  axiosErrorHandler(msgLogger, false),
-);
+});
+
+uzumHttp.interceptors.request.use(c => generateAndAssignRandomHeaders(c), axiosErrorHandler(msgLogger, false));
 
 uzumHttp.interceptors.response.use(
   config => {

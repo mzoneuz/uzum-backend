@@ -7,6 +7,7 @@ export interface Envs {
   readonly APP_DEVELOPER_CHAT_ID: string;
   readonly APP_REPORTS_GROUP_ID: string;
   readonly APP_DEVELOPERS_CHAT_IDS: string;
+  readonly APP_CONTENT_CHAT_IDS: string;
 
   // urls
   readonly APP_UZUM_API_BASE_URL: string;
